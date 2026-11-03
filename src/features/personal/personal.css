@@ -1,6 +1,6 @@
 .cloud-upgrade { padding:0 14.75px 0 22.125px; height:44.25px; color:rgba(0,0,0,.7); }
 .cloud-app .cloud-rail button.active { background:#000; }
-.cloud-app::before { content:none; }
+.cloud-app::before { background:url('/AI-workplace/figma/background.png') center top / 100% auto no-repeat; opacity:.82; }
 .personal-main { min-width:0; display:grid; gap:16px; }
 .personal-main .coordination-section-title { margin:0; }
 .personal-create { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; height:34px; padding:0 14px; border:0; border-radius:999px; background:#18181b; color:#fff; font-size:12px; cursor:pointer; }
