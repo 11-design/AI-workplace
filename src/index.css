@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+@import './features/coordination/coordination.css';
+
+@theme {
+  --font-sans: 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --color-brand: #0052d9;
+  --color-brand-deep: #0034b5;
+  --color-brand-soft: #f1f5f9;
+  --color-line: #dfe3e8;
+  --color-line-soft: #e8ebef;
+  --color-fill: #f8fafc;
+  --color-ebony: #111827;
+  --color-ok: #088f50;
+}
+
+@layer base {
+  body { font-family: var(--font-sans); font-size: 13px; color: #18181b; background: #f8fafc; letter-spacing: .005em; }
+  button, select, input, textarea { outline: none; }
+  button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible { box-shadow: 0 0 0 2px rgba(0, 82, 217, 0.16); }
+}
+
+@layer components {
+  .console-panel { border: 1px solid var(--color-line-soft); border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.035); }
+  .console-btn { display: inline-flex; height: 34px; align-items: center; justify-content: center; border: 1px solid var(--color-line); border-radius: 7px; background: #fff; padding: 0 14px; font-weight: 500; transition: border-color .15s, color .15s, background-color .15s, box-shadow .15s; }
+  .console-btn:hover { border-color: #a1a1aa; color: #18181b; background: #fafafa; }
+  .console-btn-primary { border-color: var(--color-brand); background: var(--color-brand); color: #fff; box-shadow: 0 1px 2px rgba(0,82,217,.18); }
+  .console-btn-primary:hover { border-color: var(--color-brand-deep); background: var(--color-brand-deep); color: #fff; }
+  .console-tag { display: inline-flex; min-height: 22px; align-items: center; border-radius: 6px; padding: 0 7px; font-size: 11px; line-height: 22px; }
+  .ai-surface { border: 1px solid #e4e4e7; border-radius: 10px; background: linear-gradient(135deg, #fafafa, #fff 72%); box-shadow: 0 1px 2px rgba(15,23,42,.03); }
+  .dynamic-inline-tag { display: inline; box-decoration-break: clone; -webkit-box-decoration-break: clone; border: 1px solid #e4e4e7; border-radius: 6px; background: #f4f4f5; padding: 2px 6px; font-size: 12px; font-weight: 600; line-height: 1.8; overflow-wrap: anywhere; }
+}
+
+
+@layer utilities {
+  /* Keep the workspace close to the referenced cloud-console system. */
+  .rounded-xl { border-radius: 12px !important; }
+  .rounded-lg { border-radius: 10px !important; }
+  .shadow-xl { box-shadow: -12px 0 32px rgba(15, 23, 42, 0.10) !important; }
+  .bg-fill { background-color: #f8fafc !important; }
+  .bg-brand-soft\/60 {
+    border: 1px solid #e4e4e7;
+    background: linear-gradient(135deg, #fafafa, #fff 74%) !important;
+  }
+  .bg-brand-soft\/50, .bg-brand-soft\/30 { background-color: #f4f4f5 !important; }
+  .bg-brand\/70, .bg-brand\/75, .bg-brand-deep { background-color: #52525b !important; }
+  .text-brand { color: #3f3f46 !important; }
+  .border-brand { border-color: #a1a1aa !important; }
+  button.bg-brand, .console-btn-primary { background-color: #0052d9 !important; color: #fff !important; border-color: #0052d9 !important; }
+  button.bg-brand:hover, .console-btn-primary:hover { background-color: #003fb0 !important; border-color: #003fb0 !important; }
+  .coordination-toolbar .console-btn-primary { background-color:#171a21!important; border-color:#0052d9!important; }
+  .coordination-toolbar .console-btn-primary:hover { background-color:#303640!important; }
+  section.rounded-xl, aside.rounded-xl {
+    border-color: #e4e4e7 !important;
+    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.035);
+  }
+  h1 { letter-spacing: -.025em; }
+  h2, h3 { letter-spacing: -.012em; }
+}
+
+@layer base {
+  * { scrollbar-width:thin; scrollbar-color:rgba(113,113,122,.055) transparent; }
+  *:hover { scrollbar-color:rgba(113,113,122,.12) transparent; }
+  @supports selector(::-webkit-scrollbar) {
+    * { scrollbar-width:auto; scrollbar-color:auto; }
+    *:hover { scrollbar-color:auto; }
+    *::-webkit-scrollbar { width:5px; height:5px; }
+    *::-webkit-scrollbar-track { background:transparent; }
+    *::-webkit-scrollbar-thumb { background:rgba(113,113,122,.055); border-radius:999px; }
+    *:hover::-webkit-scrollbar-thumb { background:rgba(113,113,122,.12); }
+    *::-webkit-scrollbar-thumb:hover { background:rgba(113,113,122,.20); }
+    *::-webkit-scrollbar-thumb:active { background:rgba(113,113,122,.30); }
+    *::-webkit-scrollbar-corner { background:transparent; }
+    *::-webkit-scrollbar-button { display:none; width:0; height:0; }
+  }
+}

@@ -1,0 +1,30 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="22.4532" height="22.4532" viewBox="0 0 22.4532 22.4532" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="CommandFilled">
+<path id="Star 6" d="M11.2266 1.40333L12.4864 4.80791C13.3708 7.19798 15.2552 9.0824 17.6453 9.9668L21.0499 11.2266L17.6453 12.4864C15.2552 13.3708 13.3708 15.2552 12.4864 17.6453L11.2266 21.0499L9.9668 17.6453C9.08239 15.2552 7.19798 13.3708 4.80791 12.4864L1.40333 11.2266L4.80791 9.9668C7.19798 9.08239 9.0824 7.19798 9.9668 4.80791L11.2266 1.40333Z" fill="#4097F6"/>
+<g id="Group 2147208671">
+<mask id="mask0_0_126" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="21" height="21">
+<path id="Star 7" d="M11.2266 1.4043L12.4864 4.80889C13.3708 7.19895 15.2552 9.08337 17.6453 9.96777L21.0499 11.2276L17.6453 12.4874C15.2552 13.3718 13.3708 15.2562 12.4864 17.6463L11.2266 21.0509L9.96679 17.6463C9.08239 15.2562 7.19797 13.3718 4.80791 12.4874L1.40332 11.2276L4.80791 9.96777C7.19797 9.08336 9.08239 7.19895 9.96679 4.80888L11.2266 1.4043Z" fill="#266FE8"/>
+</mask>
+<g mask="url(#mask0_0_126)">
+<g id="Ellipse 1114734" filter="url(#filter0_f_0_126)">
+<circle cx="3.00687" cy="13.6328" r="8.41996" fill="#E050F7"/>
+</g>
+<g id="Ellipse 1114735" filter="url(#filter1_f_0_126)">
+<circle cx="7.21683" cy="20.4493" r="8.41996" fill="#508FF7"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_126" x="-13.4321" y="-2.80612" width="32.8779" height="32.8779" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="4.0095" result="effect1_foregroundBlur_0_126"/>
+</filter>
+<filter id="filter1_f_0_126" x="-6.81643" y="6.41599" width="28.0665" height="28.0665" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.80665" result="effect1_foregroundBlur_0_126"/>
+</filter>
+</defs>
+</svg>

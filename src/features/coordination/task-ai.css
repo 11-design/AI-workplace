@@ -1,0 +1,85 @@
+.task-ai-badge { position:absolute; z-index:4; }
+.task-ai-badge > button { display:grid; place-items:center; width:24px; height:24px; padding:3px; border:1px solid #e5e7f2; border-radius:50%; background:#fff; box-shadow:0 2px 6px #00000008; cursor:pointer; }
+.task-ai-badge > button:hover { background:#f6f7fd; }
+.task-ai-tooltip { position:fixed; z-index:80; width:320px; max-height:calc(100vh - 24px); overflow:auto; border:1px solid #e6e7ef; border-radius:12px; background:#fff; box-shadow:0 12px 32px #00000016; pointer-events:none; }
+.task-ai-content { padding:16px; display:grid; gap:12px; font-size:12px; line-height:1.7; color:#52525b; text-align:left; }
+.task-ai-content header { display:flex; justify-content:space-between; align-items:center; }
+.task-ai-content header > span { display:flex; align-items:center; gap:6px; color:#3f3f46; font-weight:500; }
+.task-ai-content header small { color:#a1a1aa; font-size:10px; }
+.task-ai-content h4 { font-size:13px; font-weight:500; color:#27272a; }
+.task-ai-content strong { font-weight:500; color:#52525b; }
+.task-ai-evidence ul { padding-left:16px; list-style:disc; margin-top:4px; }
+.task-ai-impact { font-size:11px; color:#71717a; }
+.task-ai-advice { border:1px solid #e9e9ef; border-radius:8px; padding:10px; background:#fafafb; }
+.task-ai-advice ol { display:grid; gap:10px; margin-top:6px; }
+.task-ai-advice li { display:grid; gap:3px; }
+.task-ai-advice b { font-weight:500; color:#3f3f46; }
+.task-ai-advice li span,.task-ai-footnote { color:#8b8b95; font-size:11px; }
+.wbs-detail > .task-ai-content { border-top:1px solid #eee; }
+
+.task-ai-advice { padding:0; border:0; border-radius:0; background:transparent; }
+.task-ai-prompts { display:grid; gap:10px; margin-top:10px; }
+.task-ai-prompt { display:grid; grid-template-columns:16px minmax(0,1fr) 16px; align-items:center; gap:8px; min-height:44px; padding:11px 14px; border:1px solid #eceef3; border-radius:999px; background:#fff; color:#27272a; font-size:12px; line-height:20px; }
+.task-ai-prompt > span { min-width:0; }
+.task-ai-prompt > img { display:block; }
+
+.task-ai-tooltip { pointer-events:auto; }
+.task-ai-prompt { cursor:pointer; text-align:left; }
+.task-ai-prompt:hover { background:#f8faff; border-color:#dbe2f0; }
+
+.coordination-plan-card { position:relative; min-width:0; }
+.ai-is-running .gantt-scroll,.ai-is-running .wbs-content,.ai-is-running .coordination-toolbar { pointer-events:none; }
+.ai-running-label { color:#767089; font-size:12px; white-space:nowrap; }
+@keyframes ai-plan-breathe { 0%,100% { background-position:0% 50%; opacity:.65; } 50% { background-position:100% 50%; opacity:1; } }
+.gantt-row [data-timeline] > .gantt-task-bar.is-ai-adjusted,.wbs-node.is-ai-adjusted { background:#fff; border:1px solid #9254ed; box-shadow:none; }
+@media(prefers-reduced-motion:reduce) { .is-ai-editing::after { animation:none!important; } }
+
+.task-ai-change-badge { width:24px; height:24px; }
+.task-ai-change-badge:hover,.task-ai-change-badge:focus-within { z-index:35; }
+.task-ai-change-badge > button { position:absolute; left:0; display:flex; justify-content:flex-start; gap:0; border-radius:999px; width:max-content; overflow:hidden; transition:gap .22s ease,padding .22s ease; }
+.task-ai-change-badge > button > img { flex:0 0 16px; }
+.task-ai-change-badge > button > span:not(.task-ai-star) { display:none; white-space:nowrap; font-size:11px; color:#625773; }
+.task-ai-change-badge:hover > button,.task-ai-change-badge:focus-within > button { width:max-content; padding:3px 9px; gap:6px; border-color:#dcd3ed; background:#fff; box-shadow:0 2px 10px #9c82c51a; }
+.task-ai-change-badge:hover > button > span:not(.task-ai-star),.task-ai-change-badge:focus-within > button > span:not(.task-ai-star) { display:block; }
+@media(prefers-reduced-motion:reduce) { .task-ai-change-badge > button,.task-ai-change-badge > button > span:not(.task-ai-star) { transition:none; } }
+
+.task-ai-star { position:relative; display:block; flex:0 0 16px; width:16px; height:16px; overflow:hidden; }
+
+.gantt-row [data-timeline] > .gantt-task-bar.is-ai-editing,.wbs-node.is-ai-editing { overflow:visible; box-shadow:none; }
+.gantt-task-bar.is-ai-editing::after,.wbs-node.is-ai-editing::after { content:""; position:absolute; inset:-2px; border-radius:inherit; padding:1px; pointer-events:none; background:linear-gradient(120deg,#e9ddff,#9254ed,#c5a4f2,#eee5ff,#9254ed); background-size:240% 240%; -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; animation:ai-plan-breathe 2s ease-in-out infinite; }
+
+/* Text stays in place while a soft highlight travels across the active task. */
+.is-ai-editing > .gantt-task-label,
+.is-ai-editing > .wbs-task-label {
+  background-image:linear-gradient(110deg,#78638e 0%,#78638e 38%,#d8bdf7 47%,#eee2ff 50%,#d8bdf7 53%,#78638e 62%,#78638e 100%);
+  background-size:250% 100%;
+  background-repeat:no-repeat;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  animation:ai-task-text-shimmer 2s linear infinite;
+}
+@keyframes ai-task-text-shimmer {
+  from { background-position:150% 0; }
+  to { background-position:-50% 0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .is-ai-editing > .gantt-task-label,.is-ai-editing > .wbs-task-label {
+    animation:none; background:none; color:#78638e; -webkit-text-fill-color:currentColor;
+  }
+}
+
+/* Figma 132:60227 — inline risk prompt beside the task. */
+.task-ai-badge:not(.task-ai-change-badge) > button { display:flex; align-items:center; gap:0; width:max-content; height:26px; padding:3px 10px; border-radius:20px; border:1px solid #e5e7f2; box-shadow:0 2px 3px #00000008; color:rgba(0,0,0,.5); font-size:12px; line-height:18px; white-space:nowrap; }
+.task-ai-risk-icon { display:block; width:14px; height:14px; transform:scaleX(-1); flex-shrink:0; }
+
+.ai-is-running .coordination-filters,.ai-is-running .coordination-project-row { pointer-events:none; opacity:.65; }
+.breakdown-execution progress { width:100%; height:4px; accent-color:#9254ed; }
+.breakdown-working-dot { width:6px; height:6px; border-radius:50%; background:#9254ed; margin-left:auto; animation:ai-plan-breathe 1.6s infinite; }
+.breakdown-retry { border:1px solid #e6e9ef; border-radius:999px; padding:4px 14px; background:white; }
+.ai-is-running .coordination-heading > p { display:none; }
+.breakdown-execution progress { appearance:none; border:0; border-radius:999px; overflow:hidden; background:#ede9f4; }
+.breakdown-execution progress::-webkit-progress-bar { background:#ede9f4; }
+.breakdown-execution progress::-webkit-progress-value { background:#9254ed; border-radius:999px; transition:width .35s ease; }
+.breakdown-execution progress::-moz-progress-bar { background:#9254ed; }

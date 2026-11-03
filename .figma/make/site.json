@@ -1,0 +1,10 @@
+{
+  "description": "为个人执行者提供可定制的模块化工作台，集中呈现日常任务与工作信息，帮助高效推进工作。",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
