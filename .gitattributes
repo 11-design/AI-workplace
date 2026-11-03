@@ -144,3 +144,6 @@
 *.stl                filter=lfs diff=lfs merge=lfs -text
 *.nc                 filter=lfs diff=lfs merge=lfs -text
 *.mat                filter=lfs diff=lfs merge=lfs -text
+
+# Keep the assistant avatar available to GitHub Pages without Git LFS.
+public/figma/avatar.png -filter -diff -merge
