@@ -7,6 +7,12 @@ export const INITIAL_TASKS: Task[] = [
   { id: 'design', project: '支付体验改版', title: '设计规范交接', owner: '苏禾', participants: ['林晓', '赵晨'], status: '进行中', start: 0, end: 6, deps: [] },
   { id: 'front', project: '支付体验改版', title: '前端实现与联调', owner: '赵晨', participants: ['林晓', '陈宇'], status: '待开始', start: 7, end: 8, deps: ['api', 'design'] },
   { id: 'qa', project: '支付体验改版', title: '上线验收', owner: '李悦', participants: ['林晓'], status: '待开始', start: 9, end: 9, deps: ['front'] },
+  { id: 'prototype', project: '支付体验改版', title: '支付流程原型评审', owner: '林晓', participants: ['苏禾', '陈宇'], status: '已完成', start: 0, end: 1, deps: ['decision'] },
+  { id: 'copy', project: '支付体验改版', title: '支付文案与错误提示', owner: '苏禾', participants: ['林晓'], status: '进行中', start: 2, end: 4, deps: ['design'] },
+  { id: 'integration', project: '支付体验改版', title: '支付回调联调', owner: '陈宇', participants: ['赵晨'], status: '待开始', start: 5, end: 7, deps: ['api'] },
+  { id: 'tracking', project: '支付体验改版', title: '埋点方案核对', owner: '王敏', participants: ['林晓', '赵晨'], status: '待开始', start: 4, end: 6, deps: ['design'] },
+  { id: 'regression', project: '支付体验改版', title: '回归测试用例整理', owner: '李悦', participants: ['陈宇'], status: '待开始', start: 7, end: 8, deps: ['integration', 'front'] },
+  { id: 'release', project: '支付体验改版', title: '发布检查与复盘', owner: '林晓', participants: ['全员'], status: '待开始', start: 9, end: 9, deps: ['qa', 'regression'] },
   { id: 'campaign', project: '增长活动', title: '活动规则确认', owner: '王敏', participants: ['周宁'], status: '待开始', start: 8, end: 9, deps: [] },
 ]
 export const INITIAL_EVENTS: CoordinationEvent[] = [

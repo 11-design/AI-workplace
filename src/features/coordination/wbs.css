@@ -16,7 +16,7 @@
 .wbs-editor button { border:1px solid #d4d4d8; border-radius:999px; padding:4px 12px; }
 .wbs-editor button[type=submit] { background:#27272a; color:#fff; border-color:#27272a; }
 .wbs-board { height:617px; max-height:617px; min-height:0; }
-.wbs-board > section { height:615px; display:grid; grid-template-rows:auto auto minmax(0,1fr); }
+.wbs-board > section { height:100%; display:grid; grid-template-rows:auto auto minmax(0,1fr); }
 .wbs-content { display:grid; grid-template-columns:minmax(0,1fr) 280px; min-height:0; overflow:hidden; }
 .wbs-content .wbs-graph-scroll { min-width:0; min-height:0; }
 .wbs-content .wbs-detail { margin:0; min-width:0; min-height:0; overflow:auto; border:0; border-left:1px solid #e6e9ef; border-radius:0; }
