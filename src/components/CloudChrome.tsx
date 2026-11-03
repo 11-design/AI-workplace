@@ -23,7 +23,6 @@ const railGroups = [
 ]
 export function CloudRail() {
   return <aside className="cloud-rail" aria-label="产品导航">
-    <div className="rail-product"><Icon file="my-items/28ab8.svg" /></div>
     <nav>{railGroups.map((group,index)=><div className="rail-group" key={index}>
       {index>0&&<div className="rail-separator"/>}
       {group.map((file,i)=><button key={file+i} aria-label={index===0?'工作台':`应用 ${index}-${i+1}`} className={index===0?'active':''}><Icon file={'my-items/'+file}/></button>)}
