@@ -26,7 +26,7 @@
 .cloud-tabs .cloud-new-workspace:hover { color:rgba(0,0,0,.9); }
 .cloud-app::before { content:none; }
 .cloud-header,.cloud-rail,.cloud-tabs { position:relative; z-index:2; }
-.coordination-page { position:relative; z-index:1; margin-left:var(--rail-width); padding:47.34px 32px 80px; background:url('/AI-workplace/figma/background.png') center top / 100% auto no-repeat; }
+.coordination-page { position:relative; z-index:1; margin-left:var(--rail-width); padding:47.34px 32px 80px; background:url('/AI-workplace/figma/background.png') center top / 100% auto no-repeat; background-color:#fff; }
 .workspace-greeting { display:flex; align-items:center; justify-content:flex-start; gap:64px; width:min(1600px,100%); min-height:40px; margin:0 auto 36px; }
 .workspace-greeting h1 { display:flex; gap:12px; flex-shrink:0; color:rgba(0,0,0,.9); font-size:32px; line-height:40px; font-weight:500; letter-spacing:.4063px; white-space:nowrap; }
 .workspace-greeting h1 b { color:#0052d9; font-weight:500; }
