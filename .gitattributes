@@ -147,3 +147,4 @@
 
 # Keep the assistant avatar available to GitHub Pages without Git LFS.
 public/figma/avatar.png -filter -diff -merge
+public/figma/background.png -filter -diff -merge
