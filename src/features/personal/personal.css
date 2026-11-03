@@ -3,7 +3,7 @@
 .cloud-app::before { background:url('/figma/my-items/background.svg') center top / auto no-repeat; opacity:1; }
 .personal-main { min-width:0; display:grid; gap:16px; }
 .personal-main .coordination-section-title { margin:0; }
-.personal-create { display:block; flex-shrink:0; border:0; padding:0; border-radius:999px; background:#18181b; cursor:pointer; }
+.personal-create { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; height:34px; padding:0 14px; border:0; border-radius:999px; background:#18181b; color:#fff; font-size:12px; cursor:pointer; }
 .personal-card { height:760px; display:flex; flex-direction:column; min-width:0; border:1px solid #e9ecf1; background:#fff; }
 .personal-filters { min-height:62px; padding:16px 20px; display:flex; align-items:center; gap:12px; flex-shrink:0; }
 .personal-filters > label { border-bottom:1px dashed #bcc4d0; color:#555; font-weight:500; }

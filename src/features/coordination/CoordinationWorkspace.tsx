@@ -83,7 +83,7 @@ export default function CoordinationWorkspace() {
           <div className="coordination-heading"><Icon file="04c60.svg" className="rotate-90" /><h2>项目计划与协调事项</h2>{state.aiRunning&&<span role="status" className="ai-running-label">{state.aiActivity}</span>}<p>层级表示工作组成 · 时间条表示周期 · 连线语义由依赖字段记录</p></div>
           <div className="coordination-toolbar">
             <button className="suggestion-pill" onClick={() => setShowAdvice(!showAdvice)}><Icon file="suggestion.png" />处理建议<span>按照变动重新调整任务安排</span></button>
-            <Button onClick={() => state.setDialog('project')}>＋ 创建项目</Button><Button primary onClick={() => openTaskDialog()}>＋ 添加任务</Button>
+            <Button primary onClick={() => state.setDialog('project')}>＋ 创建项目</Button>
           </div>
         </header>
         {showAdvice && <div className="coordination-advice">当前有 {state.pendingCount} 条待确认动态。请先确认来源与变更内容，再调整关联任务的排期。<button onClick={() => { state.setOnlyPending(true); setShowAdvice(false) }}>查看待确认动态</button></div>}
