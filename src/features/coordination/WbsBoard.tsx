@@ -202,7 +202,7 @@ export function WbsBoard({ view, aiDraft, onCancelAi, editTarget, aiEditingIds, 
 
     if(view==='gantt')nodes.forEach((node,index)=>{node.x=timelineLeft+node.task.start*dayWidth+4;node.y=54+index*60})
     const height=view==='gantt'
-      ?Math.max(400,...nodes.map(n=>n.y+60))
+      ?Math.max(617,...nodes.map(n=>n.y+60))
       :Math.max(400,...nodes.map(n=>n.y+380))
     const width=view==='gantt'?timelineLeft+DAYS.length*dayWidth:Math.max(760,...nodes.map(n=>n.x+480))
     const selected=source.find(t=>t.id===selectedId)
