@@ -1,4 +1,4 @@
-.wbs-board { height:clamp(420px,calc(100dvh - 151px),900px); overflow:auto; border:1px solid #e6e9ef; background:#fff; }
+.wbs-board { height:617px; overflow:auto; border:1px solid #e6e9ef; background:#fff; }
 .wbs-canvas { min-width:780px; }
 .wbs-row { display:grid; grid-template-columns:minmax(280px,1fr) 72px 80px 80px 170px; gap:12px; align-items:center; min-height:52px; padding-right:16px; border-bottom:1px solid #f2f4f8; font-size:12px; }
 .wbs-head { min-height:41px; color:#71717a; background:#f8fafc; padding-left:16px; }
@@ -15,8 +15,8 @@
 .wbs-editor input { border:1px solid #a1a1aa; border-radius:6px; padding:7px 10px; min-width:0; outline-color:#52525b; }
 .wbs-editor button { border:1px solid #d4d4d8; border-radius:999px; padding:4px 12px; }
 .wbs-editor button[type=submit] { background:#27272a; color:#fff; border-color:#27272a; }
-.wbs-board { height:clamp(420px,calc(100dvh - 151px),900px); max-height:calc(100dvh - 151px); min-height:0; }
-.wbs-board > section { height:calc(100% - 2px); display:grid; grid-template-rows:auto auto minmax(0,1fr); }
+.wbs-board { height:617px; max-height:617px; min-height:0; }
+.wbs-board > section { height:615px; display:grid; grid-template-rows:auto auto minmax(0,1fr); }
 .wbs-content { display:grid; grid-template-columns:minmax(0,1fr) 280px; min-height:0; overflow:hidden; }
 .wbs-content .wbs-graph-scroll { min-width:0; min-height:0; }
 .wbs-content .wbs-detail { margin:0; min-width:0; min-height:0; overflow:auto; border:0; border-left:1px solid #e6e9ef; border-radius:0; }
