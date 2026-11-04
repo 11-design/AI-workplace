@@ -8,7 +8,7 @@ import { openPlanning } from '../../components/PlanningConversation'
 
 // Prototype event: snapshot at 10/30, not a live monitoring or model response.
 export function getTaskInsight(task: Task, tasks: Task[]) {
-  if (task.id !== 'api' || task.status === '已完成' || task.end >= 2) return null
+  if (!['api', 'copy', 'tracking'].includes(task.id) || task.status === '已完成') return null
   const related = tasks.filter(item => item.project === task.project)
   const affected = new Set<string>([task.id])
   let changed = true
