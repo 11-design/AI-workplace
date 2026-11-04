@@ -72,9 +72,10 @@
 
 /* Figma 132:60227 — inline risk prompt beside the task. */
 .task-ai-badge:not(.task-ai-change-badge) > button { position:relative; isolation:isolate; display:flex; align-items:center; gap:0; width:max-content; height:26px; padding:3px 10px; border-radius:20px; border:1px solid #e5e7f2; box-shadow:0 2px 3px #00000008; color:rgba(0,0,0,.5); font-size:12px; line-height:18px; white-space:nowrap; }
-.task-ai-badge:not(.task-ai-change-badge) > button::before { content:""; position:absolute; z-index:-1; inset:-4px; border-radius:24px; background:radial-gradient(ellipse,rgba(146,84,237,.32),rgba(146,84,237,0) 72%); opacity:.35; filter:blur(3px); animation:task-ai-risk-glow 2.2s ease-in-out infinite; pointer-events:none; }
+.task-ai-badge:not(.task-ai-change-badge) > button::before { content:""; position:absolute; z-index:-1; inset:-4px; border-radius:24px; background:radial-gradient(ellipse,rgba(146,84,237,.32),rgba(146,84,237,0) 72%); opacity:0; filter:blur(3px); pointer-events:none; }
+.risk-alerts-active .task-ai-badge:not(.task-ai-change-badge) > button::before { opacity:.35; animation:task-ai-risk-glow 2.2s ease-in-out infinite; }
 @keyframes task-ai-risk-glow { 0%,100% { opacity:.25; transform:scale(.94); } 50% { opacity:.8; transform:scale(1.08); } }
-@media(prefers-reduced-motion:reduce) { .task-ai-badge:not(.task-ai-change-badge) > button::before { animation:none; opacity:.45; } }
+@media(prefers-reduced-motion:reduce) { .risk-alerts-active .task-ai-badge:not(.task-ai-change-badge) > button::before { animation:none; opacity:.45; } }
 .task-ai-risk-icon { display:block; width:14px; height:14px; transform:scaleX(-1); flex-shrink:0; }
 
 .ai-is-running .coordination-filters,.ai-is-running .coordination-project-row { pointer-events:none; opacity:.65; }
