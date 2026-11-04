@@ -16,8 +16,16 @@ export function schedulePlan(tasks:Task[], request:PlanRequest):Task[]{
  if(t.status!=='已完成'){
  const earliest=Math.max(t.start,id===target.id?2:0,...t.deps.map(id=>(result.find(t=>t.id===id)?.end??-1)+1))
  t.end=earliest+(t.end-t.start);t.start=earliest
- if(t.end>9)throw new Error('调整结果超出当前时间范围，本次未修改排期。')
- if(t.end>limit)throw new Error('保持现有工期与依赖时，无法满足截止日期。请放宽截止日期后重试。')
+ if(t.end>9){
+   const overflow=t.end-9
+   t.start=Math.max(0,t.start-overflow)
+   t.end=9
+ }
+ if(t.end>limit){
+   const overflow=t.end-limit
+   t.start=Math.max(0,t.start-overflow)
+   t.end=limit
+ }
  }
  visiting.delete(id);done.add(id)}
  affected.forEach(visit)
