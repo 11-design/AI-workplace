@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react'
 import { WbsBoard } from './WbsBoard'
 import { TaskAiBadge, TaskAiContent } from './TaskAiInsight'
 import { DAYS } from './data'
+import { taskTiming } from './taskTiming'
 import type { DialogMode, Task, TaskStatus } from './types'
 import { useCoordination } from './useCoordination'
 import { FigmaIcon as Icon } from '../../components/FigmaIcon'
 const STATUSES: TaskStatus[] = ['待开始', '进行中', '已完成', '挂起']
+const STATUS_FILTERS = ['全部', '待开始', '进行中', '已完成', '已逾期'] as const
 
 function Button({ children, onClick, primary = false }: { children: React.ReactNode; onClick: () => void; primary?: boolean }) {
   return <button onClick={onClick} className={`console-btn ${primary ? 'console-btn-primary' : ''}`}>{children}</button>
@@ -72,7 +74,17 @@ export default function CoordinationWorkspace() {
   const [boardView, setBoardView] = useState('gantt')
   useEffect(()=>{if(state.aiRunning&&state.aiActivity.includes('拆解')){setBoardView('wbs');setStatusFilter('全部')}},[state.aiRunning,state.aiActivity])
   const [showAdvice, setShowAdvice] = useState(false)
-  const filteredTasks = state.tasks.filter(task => statusFilter === '全部' || task.status === statusFilter)
+  const now = new Date()
+  const filteredTasks = state.tasks.filter(task => {
+    const matchesProject = state.project === '全部项目' || task.project === state.project
+    const timing = taskTiming(task, now)
+    const matchesStatus = statusFilter === '全部'
+      || statusFilter === '已逾期' && timing.overdue
+      || statusFilter === '已完成' && timing.color === 'complete'
+      || statusFilter === '进行中' && (timing.color === 'progress' || timing.color === 'overdue')
+      || statusFilter === '待开始' && timing.color === 'idle'
+    return matchesProject && matchesStatus
+  })
   const [parentPreset, setParentPreset] = useState<string | undefined>()
   const openTaskDialog = (editing?: Task, parent?: string) => { setEditingTask(editing ?? null); setParentPreset(parent); state.setDialog('task') }
   const closeTaskDialog = () => { setEditingTask(null); setParentPreset(undefined); state.setDialog(null) }
@@ -91,7 +103,7 @@ export default function CoordinationWorkspace() {
         <div className="coordination-filters" inert={state.aiRunning}>
           <label className="coordination-project-label" htmlFor="coordination-project">项目</label>
           <div className="coordination-select"><select id="coordination-project" value={state.project} onChange={event => { state.setProject(event.target.value); state.selectTask(null) }}><option>全部项目</option>{state.projects.map(item => <option key={item}>{item}</option>)}</select><Icon file="66e18.svg" /></div>
-          <div className="coordination-status-filters" role="group" aria-label="事项状态">{['全部','待开始','进行中','已完成','挂起'].map(item => <button key={item} onClick={() => setStatusFilter(item)} className={`status-filter ${statusFilter===item?'active':''}`}>{item}</button>)}</div>
+          <div className="coordination-status-filters" role="group" aria-label="事项状态">{STATUS_FILTERS.map(item => <button key={item} onClick={() => setStatusFilter(item)} className={`status-filter ${statusFilter===item?'active':''}`}>{item}</button>)}</div>
           <div ref={setEditTarget} className="wbs-project-actions coordination-edit-actions"/>
           <div className="coordination-view-toggle"><button title="甘特视图" className={boardView==='gantt'?'active':''} onClick={() => setBoardView('gantt')}><Icon file="f71ba.svg" /></button><button title="WBS 任务拆解" className={boardView==='wbs'?'active':''} onClick={() => setBoardView('wbs')}><Icon file="fff00.svg" /></button></div>
         </div>

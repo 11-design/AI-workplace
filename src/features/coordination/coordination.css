@@ -94,7 +94,7 @@
 .coordination-heading p { overflow:hidden; text-overflow:ellipsis; }
 .coordination-toolbar { display:grid; grid-auto-flow:column; grid-auto-columns:max-content; }
 .coordination-filters { display:grid; grid-template-columns:24px 118px minmax(0,1fr) auto auto; height:auto; min-height:63px; }
-.coordination-status-filters { display:grid; grid-template-columns:repeat(4,max-content); gap:12px; align-items:center; }
+.coordination-status-filters { display:grid; grid-template-columns:repeat(5,max-content); gap:12px; align-items:center; }
 .coordination-view-toggle { display:grid; grid-template-columns:repeat(2,24px); margin-left:0; }
 .activity-card { display:grid; grid-template-columns:minmax(0,1fr); grid-auto-rows:max-content; align-content:start; }
 .event-content { display:grid; grid-template-columns:minmax(0,1fr); align-content:start; }
@@ -108,7 +108,7 @@
 @container (max-width:620px) {
   .coordination-filters { grid-template-columns:24px minmax(118px,1fr) auto; row-gap:12px; }
   .coordination-select { width:100%; max-width:240px; }
-  .coordination-status-filters { grid-column:1 / -1; grid-row:2; grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .coordination-status-filters { grid-column:1 / -1; grid-row:2; grid-template-columns:repeat(5,minmax(0,1fr)); }
   .coordination-view-toggle { grid-column:3; grid-row:1; }
   .status-filter { padding-inline:8px; }
   .coordination-toolbar { grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-flow:row; width:100%; }

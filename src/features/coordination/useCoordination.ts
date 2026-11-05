@@ -33,15 +33,22 @@ export function useCoordination() {
         saved.aiTrialResetVersion = 2
         localStorage.setItem(STORAGE_KEY, JSON.stringify(saved))
       }
-      if (!saved.singleOverdueDemoVersion) {
+      if ((saved.singleOverdueDemoVersion || 0) < 2) {
         saved.tasks = saved.tasks.map((task:Task) => {
           const sample=INITIAL_TASKS.find(item=>item.id===task.id)
           if(!sample)return task
           return {...task,status:sample.status,start:sample.start,end:sample.end,baselineEnd:sample.end,completedAt:sample.completedAt,aiChange:undefined}
         })
       }
+      if ((saved.singleOverdueDemoVersion || 0) < 3) {
+        saved.tasks = saved.tasks.map((task: Task) => ['api', 'copy'].includes(task.id)
+          ? { ...task, status: '已完成', completedAt: task.id === 'api' ? '2026-11-05T16:00:00+01:00' : '2026-11-05T16:10:00+01:00' }
+          : task)
+        saved.singleOverdueDemoVersion = 3
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saved))
+      }
       setTasks(saved.tasks.map((task: Task) => ({ ...task, status: !saved.workloadDemoVersion && ['decision','api','design'].includes(task.id) && task.status==='待开始' && !saved.events.some((event: CoordinationEvent)=>event.task===task.id && /^(update-|edit-|batch-)/.test(event.id)) ? '进行中' : ['待开始','进行中','已完成','挂起'].includes(task.status) ? task.status : '待开始' }))); setEvents(saved.events); setProjects(saved.projects); setProjectMembers(saved.projectMembers || {}) } } catch {} setHydrated(true) }, [])
-  useEffect(() => { if (hydrated) localStorage.setItem(STORAGE_KEY, JSON.stringify({ tasks, events, projects, projectMembers, workloadDemoVersion: 1, aiTrialResetVersion: 2, singleOverdueDemoVersion: 1 })) }, [events, hydrated, projects, tasks, projectMembers])
+  useEffect(() => { if (hydrated) localStorage.setItem(STORAGE_KEY, JSON.stringify({ tasks, events, projects, projectMembers, workloadDemoVersion: 1, aiTrialResetVersion: 2, singleOverdueDemoVersion: 3 })) }, [events, hydrated, projects, tasks, projectMembers])
   const [aiDraft,setAiDraft]=useState<Task[]|null>(null)
   const [aiRunning,setAiRunning]=useState(false)
   const [aiEditingIds,setAiEditingIds]=useState<string[]>([])

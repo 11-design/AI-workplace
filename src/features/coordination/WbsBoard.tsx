@@ -131,12 +131,6 @@ export function WbsBoard({ view, aiDraft, onCancelAi, editTarget, aiEditingIds, 
       return [...current,...Array.from({length:extraCount},(_,i)=>({id:'preview-'+name+'-'+i,title:(examples[name]??['验收用例整理','回归问题核对','测试环境检查','发布检查清单','验收报告更新'])[i],end:Math.min(3+i,DAYS.length-1)}))]
     }
     const included = new Set([...visibleIds,...tasks.filter(t=>!savedTasks.some(old=>old.id===t.id)).map(t=>t.id)])
-    const include = (id:string, seen=new Set<string>()) => {
-      if(seen.has(id)) return; seen.add(id)
-      const t=all.find(t=>t.id===id); if(!t) return
-      included.add(id); [...t.deps,...(t.parent?[t.parent]:[])].forEach(id=>include(id,seen))
-    }
-    visibleIds.forEach(id=>include(id))
     const source=all.filter(t=>included.has(t.id))
     const levels=new Map<string,number>()
     const level=(t:Task, trail=new Set<string>()):number=>{
@@ -193,7 +187,7 @@ export function WbsBoard({ view, aiDraft, onCancelAi, editTarget, aiEditingIds, 
     const currentDayEnd=Math.min(DAYS.length,Math.floor(currentTimelinePosition)+1)
     const capsuleWidth=(task:Task)=>{
       const timing=taskTiming(task,now)
-      const actualEnd=task.status==='已完成'?timing.actual:(task.status==='进行中'||timing.overdue)?timing.current:undefined
+      const actualEnd=task.status==='进行中'||timing.overdue?timing.current:undefined
       // Editing previews the schedule being changed; the normal view reflects actual progress.
       const endpoint=editingProject===project||actualEnd===undefined?task.end+1:Math.floor(actualEnd)+1
       const duration=Math.max(1,Math.min(DAYS.length,endpoint)-task.start)
@@ -263,7 +257,7 @@ export function WbsBoard({ view, aiDraft, onCancelAi, editTarget, aiEditingIds, 
  }}><Plus size={14}/></button>}</div>)}</>}
 
         {view==='gantt'&&currentTimelinePosition>=0&&currentTimelinePosition<DAYS.length&&<div className="gantt-now-line" style={{left:timelineLeft+currentDayEnd*dayWidth-4,height}}><span>当前 {new Intl.DateTimeFormat('zh-CN',{timeZone:'Europe/Stockholm',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(now)}</span></div>}
-        {nodes.map(({task,x,y,code})=>{const timing=taskTiming(task,now);const nodeWidth=view==='gantt'?capsuleWidth(task):174;const lateFill=view==='gantt'&&timing.late&&editingProject!==project&&!isUnpublishedProject;const plannedWidth=Math.max(0,Math.min(nodeWidth,((task.baselineEnd??task.end)+1-task.start)*dayWidth-4));const nodeColor=isUnpublishedProject?(task.status==='已完成'?'complete':task.status==='进行中'?'progress':'idle'):timing.color;return <div key={task.id}>
+        {nodes.map(({task,x,y,code})=>{const timing=taskTiming(task,now);const nodeWidth=view==='gantt'?capsuleWidth(task):174;const lateFill=view==='gantt'&&task.status!=='已完成'&&!task.aiChange&&timing.late&&editingProject!==project&&!isUnpublishedProject;const plannedWidth=Math.max(0,Math.min(nodeWidth,((task.baselineEnd??task.end)+1-task.start)*dayWidth-4));const nodeColor=isUnpublishedProject?(task.status==='已完成'?'complete':task.status==='进行中'?'progress':'idle'):timing.color;return <div key={task.id}>
           <TaskAiBadge task={task} tasks={all} style={{left:x+nodeWidth+8,top:y+4}} onSelect={()=>{setSelectedId(task.id);setMode(null)}}/>
           <button data-wbs-node={task.id} onDragOver={event=>{if(editingProject===project&&draggingMember){event.preventDefault();event.dataTransfer.dropEffect='copy';setDropTarget(task.id)}}} onDragLeave={()=>setDropTarget(null)} onDrop={event=>{event.preventDefault();const name=event.dataTransfer.getData('application/x-wbs-person');if(editingProject!==project||!members.includes(name))return;stage({...task,owner:name});setDropTarget(null);setDraggingMember(null);setSelectedId(task.id)}} className={`wbs-node ${lateFill?'has-overdue-segment':''} ${aiEditingIds.includes(task.id)?'is-ai-editing':''} ${task.aiChange?'is-ai-adjusted':''} ${dropTarget===task.id?'is-person-target':''} ${editingProject===project?'is-editable':'is-readonly'} ${task.parent?'is-child':''} ${selected?.id===task.id?'is-selected':''}`} style={{left:x,top:y,width:nodeWidth,...(lateFill?{background:`linear-gradient(to right, #fff 0px, #fff ${plannedWidth}px, rgba(220,82,82,.07) ${plannedWidth}px)`}:{})}} onPointerDown={event=>{
             if(event.button!==0||editingProject!==project)return

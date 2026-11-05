@@ -3,12 +3,12 @@ export const DAYS = ['10/28', '10/29', '10/30', '10/31', '11/01', '11/02', '11/0
 export const CURRENT_USER = '林晓'
 export const INITIAL_TASKS: Task[] = [
   { id: 'decision', project: '支付体验改版', title: '超时策略确认', owner: '林晓', participants: ['陈宇', '王敏'], status: '已完成', start: 0, end: 0, completedAt: '2026-10-28T15:00:00+01:00', deps: [] },
-  { id: 'api', project: '支付体验改版', title: '接口定义交接', owner: '陈宇', participants: ['林晓', '赵晨'], status: '进行中', start: 1, end: 1, deps: ['decision'] },
-  { id: 'design', project: '支付体验改版', title: '设计规范交接', owner: '苏禾', participants: ['林晓', '赵晨'], status: '进行中', start: 0, end: 6, deps: [] },
+  { id: 'api', project: '支付体验改版', title: '接口定义交接', owner: '陈宇', participants: ['林晓', '赵晨'], status: '已完成', start: 1, end: 1, completedAt: '2026-11-05T16:00:00+01:00', deps: ['decision'] },
+  { id: 'design', project: '支付体验改版', title: '设计规范交接', owner: '苏禾', participants: ['林晓', '赵晨'], status: '进行中', start: 0, end: 8, deps: [] },
   { id: 'front', project: '支付体验改版', title: '前端实现与联调', owner: '赵晨', participants: ['林晓', '陈宇'], status: '待开始', start: 7, end: 8, deps: ['api', 'design'] },
   { id: 'qa', project: '支付体验改版', title: '上线验收', owner: '李悦', participants: ['林晓'], status: '待开始', start: 9, end: 9, deps: ['front'] },
   { id: 'prototype', project: '支付体验改版', title: '支付流程原型评审', owner: '林晓', participants: ['苏禾', '陈宇'], status: '已完成', start: 0, end: 1, deps: ['decision'] },
-  { id: 'copy', project: '支付体验改版', title: '支付文案与错误提示', owner: '苏禾', participants: ['林晓'], status: '进行中', start: 2, end: 4, deps: ['design'] },
+  { id: 'copy', project: '支付体验改版', title: '支付文案与错误提示', owner: '苏禾', participants: ['林晓'], status: '已完成', start: 2, end: 4, completedAt: '2026-11-05T16:10:00+01:00', deps: ['design'] },
   { id: 'integration', project: '支付体验改版', title: '支付回调联调', owner: '陈宇', participants: ['赵晨'], status: '待开始', start: 5, end: 7, deps: ['api'] },
   { id: 'tracking', project: '支付体验改版', title: '埋点方案核对', owner: '王敏', participants: ['林晓', '赵晨'], status: '待开始', start: 4, end: 6, deps: ['design'] },
   { id: 'regression', project: '支付体验改版', title: '回归测试用例整理', owner: '李悦', participants: ['陈宇'], status: '待开始', start: 7, end: 8, deps: ['integration', 'front'] },

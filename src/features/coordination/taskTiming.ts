@@ -8,7 +8,8 @@ export function timelinePosition(date:Date){
 export function taskTiming(task:Task,now:Date){
  const current=timelinePosition(now),actual=task.completedAt?timelinePosition(new Date(task.completedAt)):undefined
  const end=task.baselineEnd??task.end
- const overdue=task.status!=='已完成'&&current>=task.end+1
+ const overdue=!task.aiChange&&task.status!=='已完成'&&current>=task.end+1
  const comparison=task.status==='已完成'?actual:current
- return {current,actual,end,overdue,comparison,late:comparison!==undefined&&comparison>end+1,color:task.status==='已完成'?'complete':overdue?'overdue':task.status==='进行中'?'progress':'idle'}
+ const color=task.status==='已完成'?'complete':task.aiChange?'progress':overdue?'overdue':current>=task.start?'progress':'idle'
+ return {current,actual,end,overdue,comparison,late:comparison!==undefined&&comparison>end+1,color}
 }
